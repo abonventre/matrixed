@@ -1,0 +1,11 @@
+{
+  "name": "matrixed",
+  "version": "0.1.0",
+  "description": "node led matrix controller",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Anthony Bonventre",
+  "license": "ISC"
+}
