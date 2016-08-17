@@ -7,5 +7,12 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Anthony Bonventre",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.1.2",
+    "get-pixels": "^3.3.0",
+    "ndarray": "^1.0.18",
+    "ndarray-imshow": "^1.0.1",
+    "serialport": "^4.0.1"
+  }
 }
