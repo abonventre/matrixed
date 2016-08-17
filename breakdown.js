@@ -1,11 +1,12 @@
 var getPixels = require("get-pixels");
 var colors = require("colors");
 var ndarray = require("ndarray");
+var imshow = require("ndarray-imshow");
 
 var matrixWidth = 34,
     matrixHeight = 16;
 
-getPixels("images/r2d2.jpg", function(err, pixels) {
+getPixels("images/dog.jpg", function(err, pixels) {
   if(err) {
     console.log("Bad image path");
     return;
@@ -27,24 +28,33 @@ getPixels("images/r2d2.jpg", function(err, pixels) {
     imageHeight = pixels.shape[1];
 
     xInterval = Math.floor(imageWidth / matrixWidth);
-    yInterval = Math.floor(imageWidth / matrixHeight);
+    yInterval = Math.floor(imageHeight / matrixHeight);
+
+    console.log('Width: '.magenta,imageWidth);
+    console.log('Height: '.cyan,imageHeight);
+    console.log('Xint: '.bgMagenta,xInterval);
+    console.log('Yint: '.bgCyan,yInterval);
 
     for (var i = 0; i < matrixWidth; i++) {
       for (var j = 0; j < matrixHeight; j++) {
-        console.log('x: '.bgMagenta,i*xInterval);
-        console.log('y: '.bgCyan,j*yInterval);
-        console.log('Color:'.inverse);
-        console.log("R: ".red, pixels.get(i*xInterval, j*yInterval, 0));
-        console.log("G: ".green, pixels.get(i*xInterval, j*yInterval, 1));
-        console.log("B: ".blue, pixels.get(i*xInterval, j*yInterval, 2));
-        console.log("Brightness: ".gray, pixels.get(i*xInterval, j*yInterval, 3));
+        // console.log('x: '.bgMagenta,i*xInterval);
+        // console.log('y: '.bgCyan,j*yInterval);
+        // console.log('Color:'.inverse);
+        // console.log("R: ".red, pixels.get(i*xInterval, j*yInterval, 0));
+        // console.log("G: ".green, pixels.get(i*xInterval, j*yInterval, 1));
+        // console.log("B: ".blue, pixels.get(i*xInterval, j*yInterval, 2));
+        // console.log("Brightness: ".gray, pixels.get(i*xInterval, j*yInterval, 3));
         for (var k = 0; k < 4; k++) {
           image.push( pixels.get(i*xInterval, j*yInterval, k));
         }
 
       }
     }
-    console.log(image);
+
+    var imageMatrix = ndarray(new Float64Array(image), [matrixWidth, matrixHeight, 4]);
+    console.log(imageMatrix.shape);
+    imshow(imageMatrix);
+    //console.log(image);
 
   }else if(pixels.dimension === 4){ // 4D include frames making it a gif
     console.log('This is a gif.'.bgBlue);
