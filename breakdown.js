@@ -45,7 +45,7 @@ getPixels("images/dog.jpg", function(err, pixels) {
         // console.log("B: ".blue, pixels.get(i*xInterval, j*yInterval, 2));
         // console.log("Brightness: ".gray, pixels.get(i*xInterval, j*yInterval, 3));
         for (var k = 0; k < 4; k++) {
-          image.push( pixels.get(i*xInterval, j*yInterval, k));
+          image.push(pixels.get(i*xInterval, j*yInterval, k));
         }
 
       }
@@ -54,7 +54,6 @@ getPixels("images/dog.jpg", function(err, pixels) {
     var imageMatrix = ndarray(new Float64Array(image), [matrixWidth, matrixHeight, 4]);
     console.log(imageMatrix.shape);
     imshow(imageMatrix);
-    //console.log(image);
 
   }else if(pixels.dimension === 4){ // 4D include frames making it a gif
     console.log('This is a gif.'.bgBlue);

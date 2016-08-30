@@ -13,6 +13,8 @@
     "get-pixels": "^3.3.0",
     "ndarray": "^1.0.18",
     "ndarray-imshow": "^1.0.1",
+    "prompt": "^1.0.0",
+    "rgb-random-array": "^1.0.1",
     "serialport": "^4.0.1"
   }
 }
