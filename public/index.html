@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html en="us" ng-app="app">
+
+<head>
+  <title>Matrixed</title>
+  <!-- bootsrap css-->
+  <link rel="stylesheet" type="text/css" href="assets/lib/bootstrap/dist/css/bootstrap.min.css">
+  <!-- angularjs-->
+  <script src="assets/lib/angular/angular.min.js"></script>
+  <!-- The main app script-->
+  <script src="app/app.module.js"></script>
+  <!-- components -->
+ <script src="app/shared/menu/menuComponent.js"></script>
+</head>
+
+<body>
+    <menu-bar brand="Brand"></menu-bar>
+    <div class="container" ng-controller="HomeCtrl as $ctrl">
+        <h1>{{$ctrl.message}} </h1>
+    </div>
+</body>
+
+</html>

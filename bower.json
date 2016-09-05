@@ -1,0 +1,18 @@
+{
+  "name": "matrixed",
+  "description": "node led matrix controller",
+  "main": "server.js",
+  "authors": [
+    "Anthony Bonventre"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
