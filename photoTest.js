@@ -3,6 +3,8 @@ var getPixels = require("get-pixels");
 var colors = require("colors");
 var ndarray = require("ndarray");
 var imshow = require("ndarray-imshow");
+var fs = require('fs');
+
 
 var gamma = 1.7,
     gammaTable = [];
@@ -23,8 +25,8 @@ function listSerialPorts(err, ports){
 }
 
 function sendMessage(message){
-  console.log('boo: ', message);
-    console.log('test');
+  // console.log('boo: ', message);
+    // console.log('test');
     usbPort.write(message, function(err) {
       if (err) {
         return console.log('Error on write: ', err.message);
@@ -74,7 +76,7 @@ function sendPhoto (pixels, frames, frame) {
         var green = 0;
         var blue= 0;
         if(frames > 0){
-            console.log(pixels.get(frame-1, x, y, 0));
+            // console.log(pixels.get(frame-1, x, y, 0));
 
           red = gammaTable[pixels.get(frame-1, x, y, 0)];
           green = gammaTable[pixels.get(frame-1, x, y, 1)];
@@ -85,21 +87,28 @@ function sendPhoto (pixels, frames, frame) {
           blue = gammaTable[pixels.get(x, y, 2)];
         }
 
-
+        console.log('red: ',red,'green: ',green, 'blue: ', blue);
         imageBuffer.push(red, green, blue);
       }
   }
+  console.log('BUffer');
+  // console.log(imageBuffer);
+  fs.writeFile('buffer.txt', imageBuffer, function (err) {
+    if (err) return console.log(err);
+    console.log('Hello World > helloworld.txt');
+  });
   // console.log('Length: ',imageBuffer.length);
-  sendMessage(new Buffer(imageBuffer));
+  // sendMessage(new Buffer(imageBuffer));
 }
 
-SerialPort.list(listSerialPorts);
+// SerialPort.list(listSerialPorts);
 
 function makePhoto() {
-  getPixels("gifs/walk.gif", function(err, pixels) {
+  getPixels("images/boat.jpg", function(err, pixels) {
+    // console.log('dog');
     if(err) {
       console.log("Bad image path");
-      return;
+      return err;
     }
     // console.log(pixels.dimension);
     var imageWidth = 0,
@@ -151,11 +160,11 @@ function makePhoto() {
       }
 
 
-      sendPhoto(imageMatrix, 0);
+      sendPhoto(imageMatrix, 0, 0);
 
 
       // console.log(imageMatrix.shape);
-      // imshow(imageMatrix);
+      imshow(imageMatrix);
 
     }else if(pixels.dimension === 4){ // 4D include frames making it a gif
       console.log('This is a gif.'.bgBlue);
@@ -190,6 +199,7 @@ function makePhoto() {
               // console.log("B: ".blue, pixels.get(i*xInterval, j*yInterval, 2));
               // console.log("Brightness: ".gray, pixels.get(i*xInterval, j*yInterval, 3));
               for (var k = 0; k < 4; k++) {
+                // console.log(pixels.get(l, i*xInterval, j*yInterval, k));
                 image.push(pixels.get(l, i*xInterval, j*yInterval, k));
               }
 
@@ -229,3 +239,5 @@ function makePhoto() {
 
   });
 }
+
+makePhoto();

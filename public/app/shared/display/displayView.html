@@ -1,0 +1,7 @@
+<div class="container">
+  <div class="row" ng-repeat="row in $ctrl.getNumber($ctrl.rows) track by $index">
+    <div class="pixel" ng-repeat="column in $ctrl.getNumber($ctrl.columns) track by $index" ng-style="$ctrl.returnColor($parent.$index,$index)">
+      
+    </div>
+  </div>
+</div>
